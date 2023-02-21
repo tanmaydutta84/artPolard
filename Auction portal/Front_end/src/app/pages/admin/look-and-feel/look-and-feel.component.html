@@ -1,0 +1,222 @@
+<mat-card class="lookfeel-content">
+  <mat-card-content>
+    <mat-card-title class="font-bold">Look and Feel</mat-card-title>
+    <mat-card-subtitle>You can change website logo, fonts, font-size, color, banner,
+      etc.</mat-card-subtitle>
+
+    <mat-accordion class="change-feel-content">
+      <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Logo </mat-panel-title>
+          <mat-panel-description>
+            Add Logo
+            <mat-icon>insert_photo</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="row b-t p-t-20">
+          <div class="col-md-12">
+            <form [formGroup]="logoForm">
+              <div class="text-center">
+                <div class="avatar-upload">
+                  <div class="avatar-edit">
+                    <input type="file" id="logoUpload" accept=".png, .jpg, .jpeg" (change)="onFileChangeLogo($event)"
+                      formControlName="logo" />
+                    <label for="logoUpload">
+                      <mat-icon>create</mat-icon>
+                    </label>
+                  </div>
+                  <div *ngIf="!imageSrcLogo && !templateData?.logo" class="avatar-preview">
+                    <img id="imagePreview" src="../../../assets/images/logo-icon.png" />
+                  </div>
+                  <div *ngIf="imageSrcLogo" class="avatar-preview">
+                    <img id="imagePreview" [src]="imageSrcLogo" />
+                  </div>
+                  <div *ngIf="templateData?.logo && !imageSrcLogo" class="avatar-preview">
+                    <img id="imagePreview" [src]="adminService?.logoPath + templateData?.logo" />
+                  </div>
+                </div>
+                <mat-hint class="error-msg">
+                  <div class="mt-3" *ngIf="
+                      (isValidLogoForm || logoForm.controls['logo'].touched) &&
+                      logoForm.controls['logo'].errors
+                    ">
+                    Logo is mandatory field.
+                  </div>
+                </mat-hint>
+              </div>
+            </form>
+          </div>
+        </div>
+        <mat-action-row>
+          <button mat-raised-button color="primary" (click)="nextStep()">
+            Next
+          </button>
+        </mat-action-row>
+      </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Banner </mat-panel-title>
+          <mat-panel-description>
+            Add Header / Hero Banner
+            <mat-icon>art_track</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <form [formGroup]="bannerForm">
+          <div class="row b-t p-t-20">
+            <div class="col-md-6 col-sm-12 col-12">
+              <mat-label class="form-label">Title</mat-label>
+              <mat-form-field appearance="outline">
+                <input matInput placeholder="Title" formControlName="title" />
+                <mat-hint class="error-msg">
+                  <div *ngIf="
+                      (isValidBannerForm ||
+                        bannerForm.controls['title'].touched) &&
+                      bannerForm.controls['title'].errors
+                    ">
+                    Title is mandatory field.
+                  </div>
+                </mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <mat-label class="form-label">Sub Title</mat-label>
+              <mat-form-field appearance="outline">
+                <input matInput placeholder="Sub Title" formControlName="subTitle" />
+                <mat-hint class="error-msg">
+                  <div *ngIf="
+                      (isValidBannerForm ||
+                        bannerForm.controls['subTitle'].touched) &&
+                      bannerForm.controls['subTitle'].errors
+                    ">
+                    Sub title is mandatory field.
+                  </div>
+                </mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="col-md-12 col-sm-12">
+              <mat-label class="form-label">Description</mat-label>
+              <mat-form-field appearance="outline">
+                <textarea matInput placeholder="Write here something...." rows="4"
+                  formControlName="description"></textarea>
+              </mat-form-field>
+            </div>
+            <div class="col-md-12 col-sm-12">
+              <mat-label class="form-label">Background Image</mat-label>
+              <div class="text-center">
+                <div class="avatar-upload mt-3">
+                  <div class="avatar-edit">
+                    <input type="file" id="bannerUpload" accept=".png, .jpg, .jpeg"
+                      (change)="onFileChangeBanner($event)" formControlName="backgroundImage" />
+                    <label for="bannerUpload">
+                      <mat-icon>create</mat-icon>
+                    </label>
+                  </div>
+                  <div *ngIf="!imageSrcBanner && !templateData?.banner_image" class="avatar-preview">
+                    <img id="imagePreview" src="../../../assets/images/background/user-info.jpg" />
+                  </div>
+                  <div *ngIf="imageSrcBanner">
+                    <img id="imagePreview" [src]="imageSrcBanner" class="avatar-preview" />
+                  </div>
+                  <div *ngIf="templateData?.banner_image && !imageSrcBanner">
+                    <img id="imagePreview" [src]="adminService?.logoPath + templateData?.logo" class="avatar-preview" />
+                  </div>
+                </div>
+                <mat-hint class="error-msg">
+                  <div class="mt-3" *ngIf="
+                      (isValidBannerForm ||
+                        bannerForm.controls['backgroundImage'].touched) &&
+                      bannerForm.controls['backgroundImage'].errors
+                    ">
+                    Background image is mandatory field.
+                  </div>
+                </mat-hint>
+              </div>
+            </div>
+          </div>
+        </form>
+        <mat-action-row>
+          <button mat-raised-button color="warn" (click)="prevStep()">
+            Previous
+          </button>
+          <button mat-raised-button color="primary" (click)="nextStep()">
+            Next
+          </button>
+        </mat-action-row>
+      </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Site Looks </mat-panel-title>
+          <mat-panel-description>
+            Change Font, Font-size and Colors
+            <mat-icon>text_format</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <form [formGroup]="siteLookForm">
+          <div class="row b-t p-t-20">
+            <div class="col-md-6 col-sm-12 col-12">
+              <mat-label class="form-label">Font</mat-label>
+              <mat-form-field appearance="outline">
+                <input matInput placeholder="Roboto, sans-serif" formControlName="font" />
+                <mat-hint class="error-msg">
+                  <div *ngIf="
+                      (isValidSiteLookForm ||
+                        siteLookForm.controls['font'].touched) &&
+                      siteLookForm.controls['font'].errors
+                    ">
+                    Font is mandatory field.
+                  </div>
+                </mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <mat-label class="form-label">Font size</mat-label>
+              <mat-form-field appearance="outline">
+                <input matInput placeholder="Font size" formControlName="fontSize" />
+                <mat-hint class="error-msg">
+                  <div *ngIf="
+                      (isValidSiteLookForm ||
+                        siteLookForm.controls['fontSize'].touched) &&
+                      siteLookForm.controls['fontSize'].errors
+                    ">
+                    Font size image is mandatory field.
+                  </div>
+                </mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="col-md-4 col-sm-12">
+              <mat-label class="form-label">Color</mat-label>
+              <!-- <div class="zone zone-value">
+              <div class="row" [style.background-color]="colorCtr.value?.rgba">
+                HEX: {{ colorCtr.value?.hex }}
+              </div>
+              <div class="row">RGBA: {{ colorCtr.value?.rgba }}</div>
+            </div> -->
+              <mat-form-field>
+                <input matInput [ngxMatColorPicker]="picker" (blur)="onSelectChange($event)" formControlName="color" />
+                <mat-hint class="error-msg">
+                  <div *ngIf="
+                      (isValidSiteLookForm ||
+                        siteLookForm.controls['color'].touched) &&
+                      siteLookForm.controls['color'].errors
+                    ">
+                    Color is mandatory field.
+                  </div>
+                </mat-hint>
+                <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
+                <ngx-mat-color-picker #picker [touchUi]="touchUi" [color]="color"></ngx-mat-color-picker>
+              </mat-form-field>
+            </div>
+          </div>
+        </form>
+        <mat-action-row>
+          <button mat-raised-button color="warn" (click)="prevStep()">
+            Previous
+          </button>
+          <button mat-raised-button color="primary" (click)="saveFormData()">
+            Save
+          </button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-card-content>
+</mat-card>

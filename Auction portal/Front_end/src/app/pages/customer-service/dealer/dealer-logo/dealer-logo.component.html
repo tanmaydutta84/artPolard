@@ -1,0 +1,95 @@
+<div fxLayout="row wrap">
+  <div fxFlex.gt-lg="100" fxFlex.gt-md="100" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card>
+      <mat-card-content>
+        <mat-card-title>Logo List</mat-card-title>
+        <div>
+          <div>
+            <mat-form-field appearance="standard">
+              <mat-label>Search</mat-label>
+              <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
+            </mat-form-field>
+          </div>
+          <div class="table-rasponsive m-t-15">
+            <table mat-table [dataSource]="dataSource" class="table" matSort>
+              <!-- Checkbox Column -->
+              <!-- <ng-container matColumnDef="select">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                                        [checked]="selection.hasValue() && isAllSelected()"
+                                        [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                        [aria-label]="checkboxLabel()">
+                                    </mat-checkbox>
+                                </th>
+                                <td mat-cell *matCellDef="let row">
+                                    <mat-checkbox (click)="$event.stopPropagation()"
+                                        (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+                                        [aria-label]="checkboxLabel(row)">
+                                    </mat-checkbox>
+                                </td>
+                            </ng-container> -->
+
+              <!-- SrNo Column -->
+              <ng-container matColumnDef="srno">
+                <th mat-header-cell *matHeaderCellDef class="font-bold">
+                  Sr.No
+                </th>
+                <td mat-cell *matCellDef="let element; let i = index">
+                  {{ i + 1 }}
+                </td>
+              </ng-container>
+
+              <!-- Logo Column -->
+              <ng-container matColumnDef="logo">
+                <th mat-header-cell *matHeaderCellDef class="font-bold">
+                  Logo
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  <div class="table-logo">
+                    <img [src]="customerServiceService?.logoPath + element?.logo" class="img-fluid" />
+                  </div>
+                </td>
+                <!-- <td mat-cell *matCellDef="let element"> {{element.symbol}} </td> -->
+              </ng-container>
+
+              <!-- Status Column -->
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef class="font-bold" mat-sort-header>
+                  Status
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  <span class="text-warning bg-light-warning rounded-pill rounded">{{ element.status }}</span>
+                  <!-- <span class="text-success bg-light-success rounded-pill rounded">{{element.status}}</span> -->
+                  <!-- <span class="text-danger bg-light-danger rounded-pill rounded">{{element.status}}</span> -->
+                </td>
+              </ng-container>
+              <!-- Action Column -->
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef class="font-bold text-center" style="width: 70px">
+                  Action
+                </th>
+                <td mat-cell *matCellDef="let element" style="width: 70px">
+                  <div>
+                    <button (click)="openStatusDialog(element)" class="btn btn-edit text-primary ms-0">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button class="btn btn-delete text-danger ms-0" (click)="openDeleteDialog(element?.logo_id)">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </div>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+          </div>
+
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+            aria-label="Select page of periodic elements">
+          </mat-paginator>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

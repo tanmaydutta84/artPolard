@@ -1,0 +1,410 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./assets/styles/variable.scss";
+
+@import "./assets/styles/spinner";
+@import "./assets/styles/app";
+@import "./assets/styles/header";
+@import "./assets/styles/pages";
+@import "./assets/styles/sidebar";
+@import "./assets/styles/responsive";
+@import "~ngx-toastr/toastr";
+
+@import "./assets/styles/icons/material-design-iconic-font/css/materialdesignicons.min.css";
+@import 'material-icons/iconfont/material-icons.css';
+
+$simple-line-font-path : "/path/to/font/files";
+$simple-line-font-family : "desired-name-font-family";
+$simple-line-icon-prefix : "prefix-";
+
+:root {
+    --primary: #1e78ff;
+    --secondary: #ffb838;
+    --dark: #151317;
+    --white: #ffffff;
+    --light: #f6f7f8;
+    --gray: #9b9b9b;
+    --admin-primary: #5b73e8;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Open Sans", sans-serif !important;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    color: var(--dark) !important;
+    background-color: var(--white) !important;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+// scroll bar
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #555;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: bold;
+    margin-bottom: 0 !important;
+}
+
+a {
+    text-decoration: none;
+    color: var(--dark);
+
+    &:hover {
+        color: var(--primary);
+    }
+}
+
+ul,
+ol {
+    list-style: none;
+    padding-left: 0;
+}
+
+.mat-h5,
+.mat-typography .mat-h5,
+.mat-typography h5 {
+    font: 400 calc(25px * 0.83) / 20px Roboto, "Helvetica Neue", sans-serif;
+    margin: 0 0 12px;
+}
+
+.text-primary {
+    color: var(--admin-primary) !important;
+}
+
+.bg-section-color {
+    background-color: rgb(32, 50, 143);
+}
+
+.shadow {
+    border-radius: 5px;
+    box-shadow: var(--white) 0px 0.125rem 0.25rem !important;
+}
+
+.main-content {
+    width: 100%;
+}
+
+.section-space {
+    padding: 70px 0;
+    width: 100%;
+    position: relative;
+
+    @media (max-width: 767.59px) {
+        padding: 40px 0;
+    }
+
+    @media (max-width: 475px) {
+        padding: 30px 0;
+    }
+}
+
+.section-title-area {
+    margin: 0 auto 40px;
+    text-align: center;
+
+    @media screen and (max-width: 580px) {
+        margin-bottom: 25px;
+    }
+
+    // prid
+    .section-title {
+        position: relative;
+        font-size: 30px;
+        color: var(--dark);
+        font-weight: 700;
+
+        @media screen and (max-width: 767px) {
+            font-size: 18px;
+        }
+
+        // &::before {
+        //     content: '';
+        //     bottom: -20px;
+        //     content: "";
+        //     height: 4px;
+        //     left: 50%;
+        //     position: absolute;
+        //     width: 80px;
+        //     background-color: var(--primary);
+        //     -webkit-transform: translateX(-50%);
+        //         -ms-transform: translateX(-50%);
+        //             transform: translateX(-50%);
+        //     z-index: 3;
+        //     @media screen and (max-width:767px){
+        //         width: 60px;
+        //     }
+        // }
+    }
+}
+
+.form-label {
+    font-weight: bold;
+    font-size: 16px;
+    color: var(--dark);
+    text-align: left;
+}
+
+.text-darkred {
+    color: #c02011 !important;
+}
+
+.btn {
+    font-size: 14px;
+    margin-left: 15px;
+    border: none;
+    box-shadow: none;
+    margin-bottom: 0;
+    padding: 8px 12px;
+    font-weight: 600;
+    cursor: pointer;
+
+    &.btn-yellow {
+        background-color: var(--secondary);
+        color: var(--dark);
+    }
+
+    &.btn-blue {
+        background-color: var(--primary);
+        color: var(--white);
+        padding: 8px 20px;
+    }
+
+    &.btn-border-blue {
+        background-color: var(--white);
+        color: var(--primary);
+        border: 1px solid var(--primary);
+        padding: 8px 20px;
+    }
+
+    &:focus {
+        outline: 0;
+        box-shadow: none !important;
+    }
+}
+
+.btn-primary {
+    color: var(--white);
+    background-color: var(--admin-primary);
+    border-color: var(--admin-primary);
+    font-weight: 500;
+
+    &:hover {
+        color: var(--white);
+        background-color: #4d62c5;
+        border-color: #495cba;
+    }
+}
+
+.btn-check:focus+.btn,
+.btn:focus {
+    box-shadow: none;
+    outline: 0;
+}
+
+input:-internal-autofill-selected {
+    appearance: menulist-button;
+    background-image: none !important;
+    background-color: transparent !important;
+    color: -internal-light-dark(black, white) !important;
+}
+
+.mat-form-field-infix {
+    border-top: none;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+    background-color: var(--white);
+}
+
+.admin-login .mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
+.mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
+.dealer-signup .mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
+.mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
+.admin-login .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.dealer-signup .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background: var(--admin-primary);
+}
+
+.admin-login .mat-form-field-wrapper,
+.dealer-signup .mat-form-field-wrapper {
+    padding-bottom: 1em;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.add-product .mat-form-field-appearance-outline .mat-select-arrow-wrapper {
+    opacity: 0;
+}
+
+.mat-form-field-wrapper {
+    padding-bottom: 0.75em;
+}
+
+.product-sort .mat-form-field-wrapper {
+    padding-bottom: 0;
+}
+
+.product-sort .mat-form-field-infix {
+    padding: 0.7em 0;
+}
+
+.product-sort .mat-form-field-appearance-outline .mat-select-arrow-wrapper,
+.dealer-signup .mat-form-field-appearance-outline .mat-select-arrow-wrapper,
+.signup .mat-form-field-appearance-outline .mat-select-arrow-wrapper,
+.mat-form-field-appearance-outline .mat-select-arrow-wrapper {
+    transform: translateY(0) !important;
+    -webkit-transform: translateY(0) !important;
+    -moz-transform: translateY(0) !important;
+    -ms-transform: translateY(0) !important;
+    -o-transform: translateY(0) !important;
+}
+
+.product-filter .mat-expansion-panel-body {
+    padding: 0 15px 16px;
+}
+
+.product-filter .mat-expansion-panel-header {
+    padding: 0 15px;
+}
+
+.product-filter .mat-form-field-wrapper {
+    padding-bottom: 0;
+}
+
+.product-filter .mat-form-field {
+    width: 80%;
+}
+
+.active-auction-section .mat-button-toggle-standalone.mat-button-toggle-appearance-standard,
+.mat-button-toggle-group-appearance-standard {
+    border: 0;
+
+    @media screen and (max-width: 556px) {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+}
+
+.active-auction-section .mat-button-toggle-group-appearance-standard .mat-button-toggle+.mat-button-toggle {
+    border-left: 0;
+}
+
+.active-auction-section .mat-button-toggle-button {
+    border: solid 1px #e0e0e0;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+
+.active-auction-section .mat-button-toggle {
+    margin: 0 15px 0 0;
+
+    @media screen and (max-width: 556px) {
+        margin: 5px 0;
+    }
+}
+
+.enter-bids .mat-form-field-appearance-standard .mat-form-field-underline {
+    display: none;
+}
+
+.service-price-list .mat-header-cell,
+.service-price-list .mat-cell,
+.service-price-list .mat-footer-cell {
+    font-size: 16px;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-subscript-wrapper {
+    padding: 0 3px !important;
+    margin-top: 12px;
+}
+
+.error-msg {
+    color: red;
+}
+
+.row-pointer {
+    cursor: pointer;
+}
+
+.bodyhidden {
+    overflow: hidden;
+}
+
+.close-button {
+    float: right;
+    top: -24px;
+    right: -24px;
+}
+
+.close-icon {
+    transition: 1s ease-in-out;
+    cursor: pointer;
+}
+
+// .close-icon:hover {
+//     transform: rotate(180deg);
+// }
+
+::ng-deep .icon-outside .close-button {
+    float: right;
+    top: -52px;
+    right: -52px;
+}
+
+::ng-deep .icon-outside .mat-dialog-container {
+    overflow: unset
+}
+
+.tranct-con {
+    display: inline-block;
+    width: 180px;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}

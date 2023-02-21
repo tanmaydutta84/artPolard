@@ -1,0 +1,85 @@
+<!-- ============================================================== -->
+<!-- sidebar -->
+<!-- ============================================================== -->
+<!-- <div class="user-profile" style="background: url(assets/images/background/user-info.jpg) no-repeat;"> -->
+<!-- User profile image -->
+<!-- <div class="profile-img"> <img src="assets/images/users/profile.png" alt="user"> </div> -->
+<!-- User profile text-->
+<!-- ============================================================== -->
+<!-- Profile - style you can find in header.scss -->
+<!-- ============================================================== -->
+<!-- <div class="profile-text"><a [matMenuTriggerFor]="sdprofile" class=""> Markarn Doe <i
+                class="ti-angle-down font-12 m-l-5"></i></a></div>
+    <mat-menu #sdprofile="matMenu" class="mymegamenu">
+        <button mat-menu-item>
+            <mat-icon>settings</mat-icon> Settings
+        </button>
+        <button mat-menu-item>
+            <mat-icon>account_box</mat-icon> Profile
+        </button>
+        <button mat-menu-item>
+            <mat-icon>notifications_off</mat-icon> Disable notifications
+        </button>
+        <button mat-menu-item>
+            <mat-icon>exit_to_app</mat-icon> Sign Out
+        </button>
+    </mat-menu>
+
+</div> -->
+<mat-nav-list>
+    <!-- <mat-list-item appAccordionLink *ngFor="let menuitem of menuItems.getMenuitem()" routerLinkActive="selected"
+        group="{{menuitem.state}}">
+        <a class="" appAccordionToggle [routerLink]="['/admin-login/', menuitem.state]"
+            *ngIf="menuitem.type === 'link'">
+            <mat-icon>{{ menuitem.icon }}</mat-icon>
+            <span>{{ menuitem.name }}</span>
+            <span fxFlex></span>            
+        </a>
+    </mat-list-item> -->
+
+    <span *ngFor="let menuitem of serviceProviderMenu">
+        <span *ngIf="menuitem.children && menuitem.children.length > 0">
+            <mat-accordion appAccordion class="m-t-20">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header class="b-b">
+                        <mat-list-item>
+                            <!-- Cabeceras del submenu -->
+                            <a fxLayout="row" class="mb-0">
+                                <mat-icon>{{menuitem.icon}}</mat-icon>
+                                {{menuitem.name}}
+                            </a>
+                            <!-- <a class="" appAccordionToggle [routerLink]="['/admin-login/', menuitem.state]"
+                                *ngIf="menuitem.type === 'link'">
+                                <mat-icon>{{ menuitem.icon }}</mat-icon>
+                                <span>{{ menuitem.name }}</span>
+    <span fxFlex></span>
+    </a> -->
+                        </mat-list-item>
+                    </mat-expansion-panel-header>
+                    <div class="b-b">
+                        <span *ngFor="let child of menuitem.children">
+                            <!-- [routerLink]="['/pages/admin-login/'+ child.state]" -->
+                            <mat-list-item group="{{child.state}}" routerLinkActive="selected" class="h-auto">
+                                <a class="mb-0" (click)="redirectToPages(child)" *ngIf="child.type === 'link'">
+                                    <!-- <mat-icon>{{ child.icon }}</mat-icon> -->
+                                    <span>{{ child.name }}</span>
+                                    <span fxFlex></span>
+                                </a>
+                            </mat-list-item>
+                        </span>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </span>
+        <span *ngIf="!menuitem.children || menuitem.children.length === 0">
+            <mat-list-item group="{{menuitem.state}}" routerLinkActive="selected" class="b-b">
+                <!-- [routerLink]="['/pages/admin-login/'+ menuitem.state]" -->
+                <a (click)="redirectToPages(menuitem)" *ngIf="menuitem.type === 'link'">
+                    <mat-icon>{{ menuitem.icon }}</mat-icon>
+                    <span>{{ menuitem.name }}</span>
+                    <span fxFlex></span>
+                </a>
+            </mat-list-item>
+        </span>
+    </span>
+</mat-nav-list>

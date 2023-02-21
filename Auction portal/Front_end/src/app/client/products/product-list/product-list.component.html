@@ -1,0 +1,108 @@
+<mat-card class="products-content mx-0">
+  <mat-card-content>
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <div class="product-list p-0 bg-transparent mb-2">
+          <h5 class="product-item">1 - 20 of 20 results</h5>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="d-flex align-items-center product-sort justify-content-end">
+          <mat-label class="form-label me-2 text-muted font-medium">Sort by:</mat-label>
+          <mat-form-field appearance="outline" class="w-auto">
+            <mat-select (selectionChange)="sortItem($event.value)" [(ngModel)]="sortitem">
+              <mat-option value="Select">Select</mat-option>
+              <mat-option value="ItemcreatedAT">Date</mat-option>
+              <mat-option value="Price">Price</mat-option>
+              <mat-option value="Year">Year</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-12 col-sm-12">
+        <div class="product-box">
+          <div *ngFor="let item of xmlData;" class="row">
+            <div class="col-lg-4 col-md-6">
+              <div class="inventory-img">
+                <mat-icon class="zoom-in-btn" style="float: right;"
+                  (click)="setCurrentImg1(item?.Images && item?.Images?.[0]?.imageurl?.[0]);setCurrentImg2(item?.Images && item?.Images?.[0]?.imgurl?.[0]);zoomIndex = 0;bodyhidden()">
+                  zoom_in
+                </mat-icon>
+                <div *ngIf="item?.Images && item?.Images?.[0]?.imageurl">
+                  <img [src]="item?.Images && item?.Images?.[0]?.imageurl && item?.Images?.[0]?.imageurl?.[0]"
+                    class="img-fluid img-thumbnail">
+                </div>
+                <div *ngIf="item?.Images && item?.Images?.[0]?.imgurl">
+                  <img
+                    [src]="item?.Images && item?.Images?.[0]?.imgurl && apiService?.imgPath + item?.Images?.[0]?.imgurl?.[0]"
+                    class="img-fluid img-thumbnail">
+                </div>
+              </div>
+              <div *ngIf="zoomIndex != -1" class="mainZoomDiv">
+                <img *ngIf="currImg1" class="img-size" [src]="currImg1" />
+                <img *ngIf="currImg2" class="img-size" [src]="apiService?.imgPath + currImg2" />
+                <div class="closeIcon" (click)="zoomIndex = -1;closepopup()" style="cursor: pointer;">
+                  <img src="../../../assets/images/svg/white-close.svg" alt="white-close">
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-5 col-md-6">
+              <div class="inventory-item-detail">
+                <h2 class="inventory-title">
+                  <a routerLink="/product-details/{{item?.ItemID}}">{{item?.Itemtitle}}</a>
+                </h2>
+                <table class="table mt-2">
+                  <tbody>
+                    <tr>
+                      <td><strong>Availability</strong></td>
+                      <td>
+                        <span class="label label-success">{{item?.Availability}}</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Usage</strong></td>
+                      <td>{{item?.Usages}}</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Style</strong></td>
+                      <td>{{item?.ModelTypeStyle}}</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Engine Type</strong></td>
+                      <td>Liquid-cooled, 12 valve, DOHC, inline 3-cylinder</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Displacement</strong></td>
+                      <td>1160 cc</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Seat Height</strong></td>
+                      <td>32.7 in. (830 mm)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-12">
+              <div class="price-info text-lg-start text-end">
+                <span class="price text-end">${{ item?.Price }}.00 {{item?.PriceType}}</span>
+                <div class="destination-charge">*Price does not include $595.00 in destination charges.</div>
+                <hr />
+                <!-- <button class="btn btn-blue" type="submit" (click)="openQuotePhoneDialog()">
+                  <mat-icon> call</mat-icon> &nbsp; Quote by Phone
+                </button> -->
+                <button class="btn btn-border-blue" type="submit" routerLink="/product-details/{{item?.ItemID}}">View
+                  Details</button>
+                <!-- <button class="btn btn-border-blue" type="submit" (click)="openRequestQuote()">
+                  <mat-icon>mail</mat-icon> &nbsp; Request Quote
+                </button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

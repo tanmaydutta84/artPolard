@@ -1,0 +1,16 @@
+// .mat-list-base {padding-top: 28px;}
+.mat-accordion .mat-expansion-panel {
+    border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    -ms-border-radius: 0 !important;
+    -o-border-radius: 0 !important;
+    box-shadow: none !important;
+}
+.mat-expansion-panel-header {
+    padding-left: 0 !important;
+    padding-right: 15px;
+}
+.mat-list-option:hover, .mat-list-option:focus, .mat-nav-list .mat-list-item:hover, .mat-nav-list .mat-list-item:focus, .mat-action-list .mat-list-item:hover, .mat-action-list .mat-list-item:focus {background: transparent;}
+.mat-expansion-panel-header.mat-expanded {height: auto;}
+.mat-expansion-panel-body {padding: 0;}

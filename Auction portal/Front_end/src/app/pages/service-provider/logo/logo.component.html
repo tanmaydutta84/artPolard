@@ -1,0 +1,73 @@
+<section class="logo">
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-md-12 col-lg-10 col-xl-8">
+          <mat-card>
+            <div class="logo-form card">
+              <div class="card-body">
+                <div class="mt-3">
+                  <mat-card-title class="font-bold">Add Logo</mat-card-title>
+                </div>
+                <div class="row b-t p-t-20">
+                  <div class="col-md-12">
+                    <form [formGroup]="logoForm">
+                      <div class="text-center">
+                        <div class="avatar-upload">
+                          <div class="avatar-edit">
+                            <input
+                              type="file"
+                              id="logoUpload"
+                              accept=".png, .jpg, .jpeg"
+                              (change)="onFileChangeLogo($event)"
+                              formControlName="logo"
+                            />
+                            <label for="logoUpload">
+                              <mat-icon>create</mat-icon>
+                            </label>
+                          </div>
+                          <div class="avatar-preview">
+                            <img
+                              id="imagePreview"
+                              src="../../../../assets/images/logo-icon.png"
+                              *ngIf="isShowLogo"
+                            />
+                            <img
+                              id="imagePreview"
+                              [src]="imageSrcLogo"
+                              *ngIf="!isShowLogo"
+                            />
+                          </div>
+                        </div>
+                        <mat-hint class="error-msg">
+                          <div
+                            class="mt-3"
+                            *ngIf="
+                              (isValidForm ||
+                                logoForm.controls['logo'].touched) &&
+                              logoForm.controls['logo'].errors
+                            "
+                          >
+                            Logo is mandatory field.
+                          </div>
+                        </mat-hint>
+                      </div>
+                      <div class="mt-3 text-end col-md-12 col-sm-12 col-12">
+                        <button
+                          type="submit"
+                          class="btn btn-primary w-sm waves-effect waves-light"
+                          (click)="addLogo()"
+                        >
+                          Submit
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </section>
+  

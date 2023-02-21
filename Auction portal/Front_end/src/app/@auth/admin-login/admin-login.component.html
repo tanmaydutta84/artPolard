@@ -1,0 +1,147 @@
+<section class="admin-login">
+  <div class="container">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-md-8 col-lg-6 col-xl-5">
+        <div class="login-form card">
+          <div class="card-body">
+            <div class="text-center mt-2">
+              <h5 class="login-title text-primary">Welcome Back!</h5>
+              <p class="login-title text-muted">
+                Sign in to continue to AuctionSite.
+              </p>
+            </div>
+            <div class="p-2 mt-4">
+              <form [formGroup]="adminForm">
+                <div>
+                  <mat-label class="form-label">Email</mat-label>
+                  <mat-form-field appearance="outline" class="w-100">
+                    <input
+                      matInput
+                      placeholder="Email"
+                      type="email"
+                      formControlName="email"
+                      pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                    />
+                    <mat-hint class="error-msg">
+                      <div
+                        *ngIf="
+                          (isValidForm ||
+                           adminForm.controls['email'].touched) &&
+                         adminForm.controls['email']?.errors?.['required']
+                        "
+                      >
+                        Email is mandatory field.
+                      </div>
+                      <div
+                        *ngIf="
+                         (adminForm.controls['email'].errors &&
+                         adminForm.controls['email']?.errors?.['pattern'])
+                        "
+                      >
+                        Please enter valid email Id.
+                      </div>
+                    </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div>
+                  <div class="float-end">
+                    <a href="#" class="text-muted">Forgot password?</a>
+                  </div>
+                  <mat-label class="form-label">Password</mat-label>
+                  <mat-form-field appearance="outline" class="w-100">
+                    <input
+                      matInput
+                      placeholder="Password"
+                      type="password"
+                      formControlName="password"
+                    />
+                    <mat-hint class="error-msg">
+                      <div
+                        *ngIf="
+                          (isValidForm ||
+                           adminForm.controls['password'].touched) &&
+                         adminForm.controls['password']?.errors?.['required']
+                        "
+                      >
+                        Password is mandatory field.
+                      </div>
+                    </mat-hint>
+                  </mat-form-field>
+                </div>
+                <!-- <div>
+                  <mat-label class="form-label">Role</mat-label>                  
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-select
+                      placeholder="Select Role"
+                      formControlName="role"
+                    >
+                      <mat-option value="Admin">Admin</mat-option>
+                      <mat-option value="CustomerService"
+                        >Customer Provider</mat-option
+                      >
+                    </mat-select>
+                    <mat-hint class="error-msg">
+                      <div
+                        *ngIf="
+                          (isValidForm ||
+                           adminForm.controls['role'].touched) &&
+                         adminForm.controls['role']?.errors?.['required']
+                        "
+                      >
+                        Role is mandatory field.
+                      </div>
+                    </mat-hint>
+                  </mat-form-field>
+                </div> -->
+                <div>
+                  <mat-checkbox class="form-label">Remember me</mat-checkbox>
+                </div>
+                <div class="mt-1 text-end">
+                  <button
+                    type="submit"
+                    class="btn btn-primary w-sm waves-effect waves-light"
+                    (click)="login()"
+                  >
+                    Log in
+                  </button>
+                </div>
+
+                <div class="mt-4 text-center">
+                  <div class="signin-other-title">
+                    <h5 class="mb-3 title">Sign in with</h5>
+                  </div>
+                  <ul class="list-inline">
+                    <li class="list-inline-item">
+                      <a
+                        href="javascript:void()"
+                        class="social-list-item bg-primary text-white border-primary"
+                      >
+                        <i class="fab fa-facebook-f"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a
+                        href="javascript:void()"
+                        class="social-list-item bg-info text-white border-info"
+                      >
+                        <i class="fab fa-twitter"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a
+                        href="javascript:void()"
+                        class="social-list-item bg-danger text-white border-danger"
+                      >
+                        <i class="fab fa-google"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,7 @@
+.contact {
+    .section-title {
+        &::before {
+            display: none;
+        }
+    }
+}

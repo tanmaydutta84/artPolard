@@ -1,0 +1,86 @@
+.products-content {
+
+    .product-list {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0 0;
+        margin-bottom: 1rem;
+        list-style: none;
+
+        .product-item {
+            font-size: 14px;
+            font-weight: 600;
+            color: #555;
+        }
+    }
+
+    .product-box {
+        border: 1px solid #f5f6f8;
+        transition: all 0.4s;
+        overflow: hidden;
+        margin-bottom: 20px;
+        transition: all 0.2s;
+        padding: 15px;
+        box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+
+        .invetory-item-detail {
+            .invetory-title {
+                font-size: 24px;
+                margin-bottom: 0;
+                font-weight: 600;
+
+                a {
+                    color: #20328f;
+                }
+            }
+
+            tbody,
+            tr td {
+                font-size: 86%;
+                padding: 0.45rem 0.2rem;
+                border-bottom-width: 0;
+                border-top-width: 1px;
+            }
+
+            .label {
+                display: inline;
+                padding: .2em .6em .3em;
+                font-size: 75%;
+                line-height: 1;
+                color: #fff;
+                text-align: center;
+                white-space: nowrap;
+                border-radius: .25em;
+                -webkit-border-radius: .25em;
+                -moz-border-radius: .25em;
+                -ms-border-radius: .25em;
+                -o-border-radius: .25em;
+            }
+
+            .label-success {
+                background-color: #20328f;
+            }
+
+        }
+
+        .price-info {
+            .price {
+                font-size: 21px;
+                display: block;
+            }
+
+            .destination-charge {
+                font-size: 12px;
+                line-height: 120%;
+            }
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin: 8px 0;
+        }
+    }
+}

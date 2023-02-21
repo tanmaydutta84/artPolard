@@ -1,0 +1,30 @@
+<p>formpage works!</p>
+
+
+
+
+<form #FormData="ngForm" (ngSubmit)="getUser(FormData.value)">
+
+
+   <mat-form-field color="accent" appearance="legacy">
+    <mat-label>element_name</mat-label>
+    <input matInput ngModel name="element_name" placeholder="enter your name">
+  </mat-form-field>
+
+  <br>
+
+  <mat-form-field color="accent" appearance="legacy">
+    <mat-label>value</mat-label>
+    <input matInput ngModel name="value" placeholder="enter your value">
+  </mat-form-field>
+
+  <br>
+
+
+
+
+
+  
+  
+  <button mat-flat-button color="warn">submit</button>
+</form>

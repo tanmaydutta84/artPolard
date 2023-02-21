@@ -1,0 +1,45 @@
+<h2 mat-dialog-title class="font-bold mb-2">Status</h2>
+<div mat-dialog-content>
+  <div>
+    <form class="update-form">
+      <div class="row">
+        <div class="col-lg-12 col-md-6 col-sm-12 col-12">
+          <div class="row mx-auto">
+            <!-- <div class="col-md-3">
+                        <mat-label class="form-label">Status</mat-label>
+                    </div> -->
+            <div class="col-md-12 px-0">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-select
+                  [(ngModel)]="status"
+                  [ngModelOptions]="{standalone: true}"
+                  placeholder="Select status"
+                  (selectionChange)="selectedStatus($event)"
+                >
+                  <mat-option value="Pending">Pending</mat-option>
+                  <mat-option value="Activate">Activate</mat-option>
+                  <mat-option value="Deactivate">Deactivate</mat-option>
+                  <mat-option value="Deactivate N Days"
+                    >Deactivate N Days</mat-option
+                  >
+                  <mat-option value="Credit">Credit</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-end">
+  <button mat-button (click)="closeDialog()">Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    cdkFocusInitial
+    (click)="statusUpdate()"
+  >
+    Update
+  </button>
+</div>

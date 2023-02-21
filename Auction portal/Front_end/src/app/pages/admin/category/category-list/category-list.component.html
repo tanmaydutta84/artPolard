@@ -1,0 +1,191 @@
+<mat-card>
+    <mat-card-content>
+        <div class="d-flex justify-content-between align-items-center">
+            <mat-card-title class="font-bold mb-4">All Category List</mat-card-title>
+            <button mat-button class="btn btn-primary" [matMenuTriggerFor]="afterMenu">
+                Add New
+            </button>
+            <mat-menu #afterMenu="matMenu">
+                <button mat-menu-item (click)="openCategory()">Add Category</button>
+                <button mat-menu-item (click)="openSubCategory()">Add Sub Category</button>
+                <button mat-menu-item (click)="openSubSubCategory()">Add Sub Sub Category</button>
+            </mat-menu>
+        </div>
+        <mat-tab-group mat-align-tabs="start">
+            <mat-tab label="Category List">
+                <div>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Search</mat-label>
+                        <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <div class="table-rasponsive m-t-15">
+                        <table mat-table [dataSource]="catDataSource" class="table" matSort>
+
+                            <!-- srNo Column -->
+                            <ng-container matColumnDef="srNo">
+                                <th mat-header-cell *matHeaderCellDef class="font-bold">Sr.No</th>
+                                <td mat-cell *matCellDef="let element; let i = index">
+                                    {{ i + 1 }}
+                                </td>
+                            </ng-container>
+
+                            <!-- Category Name Column -->
+                            <ng-container matColumnDef="catName">
+                                <th mat-header-cell *matHeaderCellDef class="font-bold" mat-sort-header>Category Name
+                                </th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{ element?.CategoryName }}
+                                </td>
+                            </ng-container>
+
+                            <!-- action Column -->
+                            <ng-container matColumnDef="action">
+                                <th mat-header-cell *matHeaderCellDef class="font-bold">Action</th>
+                                <td mat-cell *matCellDef="let element">
+                                    <div>
+                                        <button class="btn btn-edit text-primary ms-0"
+                                            (click)="$event.stopPropagation()" (click)="
+                              OpenCatEditDialog(element?.Category_ID)
+                            ">
+                                            <mat-icon>edit</mat-icon>
+                                        </button>
+
+                                        <button class="btn btn-delete text-danger ms-0"
+                                            (click)="$event.stopPropagation()"
+                                            (click)="OpenCatDeleteDialog(element?.Category_ID)">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </div>
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="catDisplayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: catDisplayedColumns"
+                                routerLink="{{row?.Category_ID}}" class="row-pointer"></tr>
+                        </table>
+                    </div>
+
+                    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                        aria-label="Select page of periodic elements">
+                    </mat-paginator>
+                </div>
+            </mat-tab>
+            <mat-tab label="Sub Category List">
+                <div>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Search</mat-label>
+                        <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <div class="table-rasponsive m-t-15">
+                        <table mat-table [dataSource]="subCatDataSource" class="table" matSort>
+
+                            <!-- srNo Column -->
+                            <ng-container matColumnDef="srNo">
+                                <th mat-header-cell *matHeaderCellDef class="font-bold">Sr.No</th>
+                                <td mat-cell *matCellDef="let element; let i = index">
+                                    {{ i + 1 }}
+                                </td>
+                            </ng-container>
+
+                            <!-- Sub Category Name Column -->
+                            <ng-container matColumnDef="subCatName">
+                                <th mat-header-cell *matHeaderCellDef class="font-bold" mat-sort-header>Category
+                                    Name</th>
+                                <td mat-cell *matCellDef="let element">{{ element?.CategoryName }}</td>
+                            </ng-container>
+
+                            <!-- action Column -->
+                            <ng-container matColumnDef="action">
+                                <th mat-header-cell *matHeaderCellDef class="font-bold">Action</th>
+                                <td mat-cell *matCellDef="let element">
+                                    <div>
+                                        <button class="btn btn-edit text-primary ms-0" (click)="
+                              OpenSubCatEditDialog(element?.Category_ID)
+                            ">
+                                            <mat-icon>edit</mat-icon>
+                                        </button>
+
+                                        <button class="btn btn-delete text-danger ms-0"
+                                            (click)="OpenSubCatDeleteDialog(element?.Category_ID)">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </div>
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="subCatDisplayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: subCatDisplayedColumns"></tr>
+                        </table>
+                    </div>
+
+                    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                        aria-label="Select page of periodic elements">
+                    </mat-paginator>
+                </div>
+            </mat-tab>
+            <mat-tab label="Sub Sub Category List">
+                <div>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Search</mat-label>
+                        <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <div class="table-rasponsive m-t-15">
+                        <table mat-table [dataSource]="subSubCatDataSource" class="table" matSort>
+
+                            <!-- srNo Column -->
+                            <ng-container matColumnDef="srNo">
+                                <th mat-header-cell *matHeaderCellDef class="font-bold">Sr.No</th>
+                                <td mat-cell *matCellDef="let element; let i = index">
+                                    {{ i + 1 }}
+                                </td>
+                            </ng-container>
+
+                            <!-- Sub Sub Category Name Column -->
+                            <ng-container matColumnDef="subSubCatName">
+                                <th mat-header-cell *matHeaderCellDef class="font-bold" mat-sort-header> Category
+                                    Name
+                                </th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{element?.CategoryName}}
+                                </td>
+                            </ng-container>
+
+                            <!-- action Column -->
+                            <ng-container matColumnDef="action">
+                                <th mat-header-cell *matHeaderCellDef class="font-bold">Action</th>
+                                <td mat-cell *matCellDef="let element">
+                                    <div>
+                                        <button class="btn btn-edit text-primary ms-0" (click)="
+                              OpenSubSubCatEditDialog(element?.Category_ID)
+                            ">
+                                            <mat-icon>edit</mat-icon>
+                                        </button>
+
+                                        <button class="btn btn-delete text-danger ms-0"
+                                            (click)="OpenSubSubCatDeleteDialog(element?.Category_ID)">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </div>
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="subSubCatDisplayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: subSubCatDisplayedColumns"></tr>
+                        </table>
+                    </div>
+
+                    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                        aria-label="Select page of periodic elements">
+                    </mat-paginator>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+
+    </mat-card-content>
+</mat-card>

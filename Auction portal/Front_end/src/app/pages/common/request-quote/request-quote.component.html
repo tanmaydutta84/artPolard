@@ -1,0 +1,67 @@
+<h2 mat-dialog-title class="font-bold mb-2">Request Quote</h2>
+<hr class="border">
+<div mat-dialog-content>
+    <div>
+        <form class="update-form">
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-12 col-12">
+                    <div class="col-12">
+                        <mat-label class="form-label">Location</mat-label>
+                        <mat-form-field appearance="outline">
+                            <mat-select placeholder="xyz-24">
+                                <mat-option value="one">First option</mat-option>
+                                <mat-option value="two">Second option</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-12">
+                        <mat-label class="form-label">Item</mat-label>
+                        <mat-form-field appearance="outline">
+                          <input matInput placeholder="Big Wheel-Honda"/>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-12">
+                        <mat-label class="form-label"><span>*</span>Name</mat-label>
+                        <mat-form-field appearance="outline">
+                          <input type="email" matInput/>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-12">
+                        <mat-label class="form-label"><span>*</span>Email</mat-label>
+                        <mat-form-field appearance="outline">
+                          <input type="password" matInput/>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-12">
+                        <mat-label class="form-label">Phone</mat-label>
+                        <mat-form-field appearance="outline">
+                          <input type="tel" matInput/>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-12">
+                            <mat-label class="form-label">Comments</mat-label>
+                            <mat-form-field appearance="outline">
+                            <textarea matInput rows="3"></textarea>
+                            </mat-form-field>
+
+                      </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-end">
+    <button
+      mat-raised-button
+      color="primary">
+      Submit
+    </button>
+  </div>
+
+
+
+

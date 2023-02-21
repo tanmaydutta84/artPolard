@@ -1,0 +1,34 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+<h2 mat-dialog-title class="font-bold mb-2">{{data?.type == "Category" ? "Edit Category" : data?.type == "Sub_Category"
+    ? "Edit Sub Category" : data?.type == "Sub_Sub_Category" ? "Edit Sub Sub Category" : "Edit Category"}} </h2>
+<div mat-dialog-content>
+    <div class="row">
+        <div class="col-lg-12 col-md-6 col-sm-12 col-12">
+            <form [formGroup]="categoryForm" class="row g-3">
+                <div class="col-12">
+                    <mat-label class="form-label">Category Name</mat-label>
+                    <mat-form-field appearance="outline">
+                        <input matInput placeholder="Category Name" formControlName="categoryName" />
+                        <mat-error>
+                            <div *ngIf="
+                      (isValidForm ||
+                        categoryForm.controls['categoryName'].touched) &&
+                      categoryForm.controls['categoryName'].errors
+                    ">
+                                Category Name is mandatory field.
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="primary" cdkFocusInitial (click)="editCategory()">
+        Save
+    </button>
+</div>

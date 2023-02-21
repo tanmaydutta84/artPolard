@@ -1,0 +1,18 @@
+<h2 mat-dialog-title class="border-bottom pb-2">{{title}}</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="mb-4 mt-3">
+    <h3 class="text-secondary">{{message}}</h3>
+    <div class="mt-2 text-secondary">
+      If this was the action that you wanted to do, please confirm your choice,
+      or cancel and return to the page.
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="border-top">
+  <button mat-button mat-dialog-close class="btn bg-success text-white">
+    Cancel
+  </button>
+  <button mat-raised-button [mat-dialog-close]="true" cdkFocusInitial class="btn bg-danger text-white">
+    {{data.type == 'info' ? 'Change' : 'Delete' }}
+  </button>
+</mat-dialog-actions>

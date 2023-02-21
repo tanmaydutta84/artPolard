@@ -1,0 +1,25 @@
+<mat-card class="mx-0">
+  <mat-card-content>
+    <div class="profile-content">
+      <div class="avatar-upload mt-3 text-center">
+        <div class="avatar-edit">
+          <input type="file" id="bannerUpload" accept=".png, .jpg, .jpeg" (change)="onprofileChangeLogo($event)" />
+          <label for="bannerUpload">
+            <mat-icon>create</mat-icon>
+          </label>
+        </div>
+        <div class="avatar-preview">
+          <img id="imagePreview" [src]="profileSrcLogo" *ngIf="profileSrcLogo" />
+          <!-- <img id="imagePreview"
+            [src]="profileSrcLogo" *ngIf="profileSrcLogo" />
+          <img id="imagePreview" src="../../../../../../assets/images/users/1.jpg" *ngIf="!profileSrcLogo" /> -->
+
+        </div>
+      </div>
+      <div class="user-name text-center mt-3">
+        <h3 class="font-20 font-bold">User name</h3>
+        <h5 class="text-muted font-14">company name</h5>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

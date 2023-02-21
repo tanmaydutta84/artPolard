@@ -1,0 +1,145 @@
+<mat-card class="mx-0 product-filter">
+  <!-- <mat-card-content> -->
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h3 class="font-16 font-medium">By Location</h3>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="location-content">
+        <div class="location-search mb-3">
+          <div class="form-inline">
+            <div class="search-box ml-2">
+              <div class="position-relative">
+                <input type="text" placeholder="Search..." class="form-control border rounded"
+                  [(ngModel)]="locationInput" /><i class="mdi mdi-magnify search-icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="location-checkbox features-wrap">
+          <button mat-raised-button color="primary" (click)="applyLocationFilter()">Apply</button>
+          <button mat-raised-button color="primary" class="set-position" (click)="clear()">Clear</button>
+        </div>
+      </div>
+    </mat-expansion-panel>
+    <!-- <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h3 class="font-16 font-medium">By Category</h3>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="features-wrap d-flex flex-wrap mb-0">
+        <div class="filter-wrap d-flex align-items-center justify-content-center active">Category1</div>
+        <div class="filter-wrap d-flex align-items-center justify-content-center">Category2</div>
+        <div class="filter-wrap d-flex align-items-center justify-content-center">Category3</div>
+        <div class="filter-wrap d-flex align-items-center justify-content-center">Category5</div>
+        <div class="filter-wrap d-flex align-items-center justify-content-center">Category</div>
+        <div class="filter-wrap d-flex align-items-center justify-content-center">Other</div>
+      </div>
+    </mat-expansion-panel> -->
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h3 class="font-16 font-medium">Year</h3>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="row mb-3">
+        <div class="col-md-6 col-sm-12 col-12">
+          <mat-label class="form-label font-13 font-medium">Min</mat-label>
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput type="number" [(ngModel)]="minYearValue" />
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-sm-12 col-12">
+          <mat-label class="form-label font-13 font-medium">Max</mat-label>
+          <mat-form-field type="number" appearance="outline" class="w-100">
+            <input matInput [(ngModel)]="maxYearValue" />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="location-checkbox features-wrap">
+        <button mat-raised-button color="primary" (click)="applyYearFilter()">Apply</button>
+        <button mat-raised-button color="primary" class="set-position" (click)="clear()">Clear</button>
+      </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h3 class="font-16 font-medium">Modal</h3>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="location-search mb-3">
+        <div class="form-inline">
+          <div class="search-box ml-2">
+            <div class="position-relative">
+              <input type="text" placeholder="Search..." class="form-control border rounded"
+                [(ngModel)]="modelValue" /><i class="mdi mdi-magnify search-icon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="location-checkbox features-wrap">
+        <button mat-raised-button color="primary" (click)="applyModelFilter()">Apply</button>
+        <button mat-raised-button color="primary" class="set-position" (click)="clear()">Clear</button>
+      </div>
+      <!-- <div class="features-wrap d-flex flex-wrap mb-0">
+        <div class="filter-wrap d-flex align-items-center justify-content-center active">123</div>
+        <div class="filter-wrap d-flex align-items-center justify-content-center">Ax 130</div>
+        <div class="filter-wrap d-flex align-items-center justify-content-center">Modal3</div>
+        <div class="filter-wrap d-flex align-items-center justify-content-center">Modal</div>
+        <div class="filter-wrap d-flex align-items-center justify-content-center">Other</div>
+      </div> -->
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h3 class="font-16 font-medium">Sale Date</h3>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div>
+        <div class="d-flex align-items-center justify-content-between mb-2">
+          <mat-form-field appearance="outline">
+            <!-- <mat-label>Enter a date range</mat-label> -->
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate matInput placeholder="Start date" picker [(ngModel)]="startDate">
+              <input matEndDate matInput placeholder="End date" picker [(ngModel)]="endDate">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field>
+        </div>
+        <div class="location-checkbox features-wrap">
+          <button mat-raised-button color="primary" (click)="applyDateFilter()">Apply</button>
+          <button mat-raised-button color="primary" class="set-position" (click)="clear()">Clear</button>
+        </div>
+      </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h3 class="font-16 font-medium">Range</h3>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="row mb-3">
+        <div class="col-md-6 col-sm-12 col-12">
+          <mat-label class="form-label font-13 font-medium">Min</mat-label>
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput type="number" [(ngModel)]="minPriceValue" />
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-sm-12 col-12">
+          <mat-label class="form-label font-13 font-medium">Max</mat-label>
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput type="number" [(ngModel)]="maxPriceValue" />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="location-checkbox features-wrap">
+        <button mat-raised-button color="primary" (click)="applyPriceFilter()">Apply</button>
+        <button mat-raised-button color="primary" class="set-position" (click)="clear()">Clear</button>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-card>

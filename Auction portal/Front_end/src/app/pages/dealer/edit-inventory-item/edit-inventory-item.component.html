@@ -1,0 +1,315 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+<h2 mat-dialog-title class="border-bottom pb-2">Edit item information</h2>
+<mat-dialog-content class="mat-typography">
+    <div class="mb-4 mt-3">
+        <div class="mt-2 text-secondary">
+            <mat-accordion>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Category Section
+                        </mat-panel-title>
+                        <!-- <mat-panel-description>
+                            This is a summary of the content
+                        </mat-panel-description> -->
+                    </mat-expansion-panel-header>
+                    <form [formGroup]="categoryForm" class="update-form">
+                        <div class="row b-t p-t-20">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-12 p-2">
+                                <mat-label class="form-label">Title</mat-label>
+                                <mat-form-field appearance="outline">
+                                    <input matInput placeholder="Title" formControlName="title">
+                                    <mat-hint class="error-msg">
+                                        <div *ngIf="
+                                            (isValidForm ||
+                                             categoryForm.controls['title'].touched) &&
+                                           categoryForm.controls['title']?.errors?.['required']
+                                          ">
+                                            Title is mandatory field.
+                                        </div>
+                                    </mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-12 p-2">
+                                <mat-label class="form-label">Category</mat-label>
+                                <mat-form-field appearance="outline">
+                                    <mat-select placeholder="Select Category" formControlName="category"
+                                        [(ngModel)]="categoryValue">
+                                        <mat-option *ngFor="let item of categoryList;" value={{item?.Category_ID}}>
+                                            {{item?.Category}}</mat-option>
+                                    </mat-select>
+                                    <mat-hint class="error-msg">
+                                        <div *ngIf="
+                                      (isValidForm ||
+                                        categoryForm.controls['category'].touched) &&
+                                      categoryForm.controls['category'].errors
+                                    ">
+                                            Category is mandatory field.
+                                        </div>
+                                    </mat-hint>
+                                </mat-form-field>
+                                <!-- <mat-form-field appearance="outline">
+                                    <input matInput placeholder="Category" formControlName="category">
+                                    <mat-hint class="error-msg">
+                                        <div *ngIf="
+                                            (isValidForm ||
+                                             categoryForm.controls['category'].touched) &&
+                                           categoryForm.controls['category']?.errors?.['required']
+                                          ">
+                                            category is mandatory field.
+                                        </div>
+                                    </mat-hint>
+                                </mat-form-field> -->
+                            </div>
+                            <!-- <div class="col-lg-6 col-md-12 col-sm-12 col-12 p-2">
+                                <mat-label class="form-label">Sub Category</mat-label>
+                                <mat-form-field appearance="outline">
+                                    <input matInput placeholder="Sub Category" formArrayName="subCategory">
+                                    <mat-hint class="error-msg">
+                                        <div *ngIf="
+                                            (isValidForm ||
+                                             categoryForm.controls['subCategory'].touched) &&
+                                           categoryForm.controls['subCategory']?.errors?.['required']
+                                          ">
+                                            Sub Category is mandatory field.
+                                        </div>
+                                    </mat-hint>
+                                </mat-form-field>
+                            </div> -->
+                            <div class="col-12 p-2">
+                                <mat-label class="form-label">Description (Write Short)</mat-label>
+                                <!-- <mat-form-field appearance="outline"> -->
+                                <!-- <textarea matInput rows="3" formControlName="description"></textarea> -->
+                                <div class="form-group has-feedback"
+                                    [ngClass]="{ 'has-error': myckeditor.invalid && myckeditor.touched }">
+                                    <ckeditor [(ngModel)]="mycontent" [ngModelOptions]="{standalone: true}"
+                                        #myckeditor="ngModel" required [config]="ckeConfig" debounce="500"
+                                        (ngModelChange)="onChange($event)">
+                                    </ckeditor>
+                                    <div *ngIf="myckeditor.invalid && myckeditor.touched" class="help-block error-msg">
+                                        Description is mandatory field.</div>
+                                </div>
+                                <!-- <ckeditor data="<p>Hello, world!</p>"></ckeditor> -->
+                                <!-- <mat-hint class="error-msg">
+                                        <div *ngIf="
+                                            (isValidForm ||
+                                             categoryForm.controls['description'].touched) &&
+                                           categoryForm.controls['description']?.errors?.['required']
+                                          ">
+                                            Description is mandatory field.
+                                        </div>
+                                    </mat-hint> -->
+                                <!-- </mat-form-field> -->
+                            </div>
+                        </div>
+                    </form>
+                </mat-expansion-panel>
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Other fileds
+                        </mat-panel-title>
+                        <!-- <mat-panel-description>
+                            Currently I am {{panelOpenState ? 'open' : 'closed'}}
+                        </mat-panel-description> -->
+                    </mat-expansion-panel-header>
+                    <form [formGroup]="inventoryForm" class="update-form">
+                        <div class="row b-t p-t-20">
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-12 p-2">
+                                <mat-label class="form-label">Availability</mat-label>
+                                <mat-form-field appearance="outline">
+                                    <input matInput placeholder="Availability" formControlName="availability">
+                                    <mat-hint class="error-msg">
+                                        <div *ngIf="
+                                            (isValidForm ||
+                                             inventoryForm.controls['availability'].touched) &&
+                                           inventoryForm.controls['availability']?.errors?.['required']
+                                          ">
+                                            Availability is mandatory field.
+                                        </div>
+                                    </mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-12 p-2">
+                                <mat-label class="form-label">Usages</mat-label>
+                                <mat-form-field appearance="outline">
+                                    <input matInput placeholder="Usages" formControlName="usages">
+                                    <mat-hint class="error-msg">
+                                        <div *ngIf="
+                                            (isValidForm ||
+                                             inventoryForm.controls['usages'].touched) &&
+                                           inventoryForm.controls['usages']?.errors?.['required']
+                                          ">
+                                            Usages is mandatory field.
+                                        </div>
+                                    </mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-12 p-2">
+                                <mat-label class="form-label">Location</mat-label>
+                                <mat-form-field appearance="outline">
+                                    <input matInput placeholder="Location" formControlName="location">
+                                    <mat-hint class="error-msg">
+                                        <div *ngIf="
+                                            (isValidForm ||
+                                             inventoryForm.controls['location'].touched) &&
+                                           inventoryForm.controls['location']?.errors?.['required']
+                                          ">
+                                            Location is mandatory field.
+                                        </div>
+                                    </mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-12 p-2">
+                                <mat-label class="form-label">Miles</mat-label>
+                                <mat-form-field appearance="outline">
+                                    <input matInput placeholder="Miles" formControlName="miles">
+                                    <mat-hint class="error-msg">
+                                        <div *ngIf="
+                                            (isValidForm ||
+                                             inventoryForm.controls['miles'].touched) &&
+                                           inventoryForm.controls['miles']?.errors?.['required']
+                                          ">
+                                            Miles is mandatory field.
+                                        </div>
+                                    </mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-12 p-2">
+                                <mat-label class="form-label">StockNumber</mat-label>
+                                <mat-form-field appearance="outline">
+                                    <input matInput placeholder="StockNumber" formControlName="stockNumber">
+                                    <mat-hint class="error-msg">
+                                        <div *ngIf="
+                                            (isValidForm ||
+                                             inventoryForm.controls['stockNumber'].touched) &&
+                                           inventoryForm.controls['stockNumber']?.errors?.['required']
+                                          ">
+                                            Stock Number is mandatory field.
+                                        </div>
+                                    </mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-12 p-2">
+                                <mat-label class="form-label">Vin</mat-label>
+                                <mat-form-field appearance="outline">
+                                    <input matInput placeholder="Vin" formControlName="vin">
+                                    <mat-hint class="error-msg">
+                                        <div *ngIf="
+                                            (isValidForm ||
+                                             inventoryForm.controls['vin'].touched) &&
+                                           inventoryForm.controls['vin']?.errors?.['required']
+                                          ">
+                                            Vin is mandatory field.
+                                        </div>
+                                    </mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-12 p-2">
+                                <mat-label class="form-label">Color</mat-label>
+                                <mat-form-field appearance="outline">
+                                    <input matInput placeholder="Color" formControlName="color">
+                                    <mat-hint class="error-msg">
+                                        <div *ngIf="
+                                            (isValidForm ||
+                                             inventoryForm.controls['color'].touched) &&
+                                           inventoryForm.controls['color']?.errors?.['required']
+                                          ">
+                                            Color is mandatory field.
+                                        </div>
+                                    </mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-12 p-2">
+                                <mat-label class="form-label">TrimColor</mat-label>
+                                <mat-form-field appearance="outline">
+                                    <input matInput placeholder="TrimColor" formControlName="trimColor">
+                                    <mat-hint class="error-msg">
+                                        <div *ngIf="
+                                            (isValidForm ||
+                                             inventoryForm.controls['trimColor'].touched) &&
+                                           inventoryForm.controls['trimColor']?.errors?.['required']
+                                          ">
+                                            Trim Color is mandatory field.
+                                        </div>
+                                    </mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-12 p-2">
+                                <mat-label class="form-label">Conditions</mat-label>
+                                <mat-form-field appearance="outline">
+                                    <input matInput placeholder="Conditions" formControlName="conditions">
+                                    <mat-hint class="error-msg">
+                                        <div *ngIf="
+                                            (isValidForm ||
+                                             inventoryForm.controls['conditions'].touched) &&
+                                           inventoryForm.controls['conditions']?.errors?.['required']
+                                          ">
+                                            Conditions is mandatory field.
+                                        </div>
+                                    </mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-12 p-2">
+                                <mat-label class="form-label">Price</mat-label>
+                                <mat-form-field appearance="outline">
+                                    <input matInput placeholder="Price" formControlName="price">
+                                    <mat-hint class="error-msg">
+                                        <div *ngIf="
+                                            (isValidForm ||
+                                             inventoryForm.controls['price'].touched) &&
+                                           inventoryForm.controls['price']?.errors?.['required']
+                                          ">
+                                            Price is mandatory field.
+                                        </div>
+                                    </mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-12 p-2">
+                                <mat-label class="form-label">PriceType</mat-label>
+                                <mat-form-field appearance="outline">
+                                    <input matInput placeholder="PriceType" formControlName="priceType">
+                                    <mat-hint class="error-msg">
+                                        <div *ngIf="
+                                            (isValidForm ||
+                                             inventoryForm.controls['priceType'].touched) &&
+                                           inventoryForm.controls['priceType']?.errors?.['required']
+                                          ">
+                                            Price Type is mandatory field.
+                                        </div>
+                                    </mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-12 p-2">
+                                <mat-label class="form-label">ModelName</mat-label>
+                                <mat-form-field appearance="outline">
+                                    <input matInput placeholder="ModelName" formControlName="modelName">
+                                    <mat-hint class="error-msg">
+                                        <div *ngIf="
+                                            (isValidForm ||
+                                             inventoryForm.controls['modelName'].touched) &&
+                                           inventoryForm.controls['modelName']?.errors?.['required']
+                                          ">
+                                            ModelName is mandatory field.
+                                        </div>
+                                    </mat-hint>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </form>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="border-top">
+    <button mat-button mat-dialog-close class="btn bg-success text-white">
+        Cancel
+    </button>
+    <button mat-raised-button cdkFocusInitial class="btn bg-danger text-white" type="submit"
+        (click)="submitInventory()">
+        Save
+    </button>
+</mat-dialog-actions>

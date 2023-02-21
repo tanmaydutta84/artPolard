@@ -1,0 +1,247 @@
+<mat-card class="add-product">
+    <mat-card-content>
+        <mat-card-title class="font-bold mb-4">Add Product</mat-card-title>
+        <!-- <mat-card-subtitle>You can change website logo, fonts, font-size, color, banner, etc.</mat-card-subtitle> -->
+
+        <mat-accordion class="change-feel-content">
+            <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Add Product Info
+                        <mat-panel-description> Fill all information below
+                        </mat-panel-description>
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+                <form [formGroup]="productForm">
+                    <div class="row b-t p-t-20">
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                            <mat-label class="form-label">Product Name</mat-label>
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="Product Name" formControlName="productName">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                            <mat-label class="form-label">Product Category</mat-label>
+                            <mat-form-field appearance="outline">
+                                <mat-select placeholder="Select Category" formControlName="productCategory">
+                                    <mat-option *ngFor="let item of categoryList;" [value]="item?.Category_ID">
+                                        {{item?.CategoryName}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                            <mat-label class="form-label">Price</mat-label>
+                            <mat-form-field appearance="outline">
+                                <input type="number" matInput placeholder="Price" formControlName="price">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                            <mat-label class="form-label">Price Type</mat-label>
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="Price Type" formControlName="priceType">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                            <mat-label class="form-label">Stock Number</mat-label>
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="Stock Number" formControlName="stockNumber">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                            <mat-label class="form-label">Vin</mat-label>
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="Vin" formControlName="vin">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12 col-12">
+                            <mat-label class="form-label">Model Name</mat-label>
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="Model Name" formControlName="modelName">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12 col-12">
+                            <mat-label class="form-label">Model Type</mat-label>
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="Model Type" formControlName="modelType">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12 col-12">
+                            <mat-label class="form-label">Model Type Style</mat-label>
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="Model Type Style" formControlName="modelTypeStyle">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12 col-12">
+                            <mat-label class="form-label">Manufacturer Name</mat-label>
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="Manufacturer Name" formControlName="manufacturerName">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12 col-12">
+                            <mat-label class="form-label">Manufacturer Year</mat-label>
+                            <mat-form-field appearance="outline">
+                                <input type="number" matInput placeholder="Manufacturer Year" formControlName="manufacturerYear">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12 col-12">
+                            <mat-label class="form-label">Color</mat-label>
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="Color" formControlName="color">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                            <mat-label class="form-label">Trim Name</mat-label>
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="Trim Name" formControlName="trimName">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                            <mat-label class="form-label">Trim Color</mat-label>
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="Trim Color" formControlName="trimColor">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                            <mat-label class="form-label">Condition</mat-label>
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="Condition" formControlName="condition">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                            <mat-label class="form-label">Usage</mat-label>
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="Usage" formControlName="usage">
+                            </mat-form-field>
+                        </div>
+                        <!-- <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                            <mat-label class="form-label">Updated</mat-label>
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="Updated" formControlName="updated">
+                            </mat-form-field>
+                        </div> -->
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                            <mat-label class="form-label">Miles</mat-label>
+                            <mat-form-field appearance="outline">
+                                <input type="number" matInput placeholder="Miles" formControlName="miles">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                            <mat-label class="form-label">Location</mat-label>
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="Location" formControlName="location">
+                            </mat-form-field>
+                        </div>
+                        <!-- <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                        <mat-label class="form-label">Category</mat-label>
+                        <mat-form-field appearance="outline">
+                            <mat-select>
+                                <mat-option value="">Select</mat-option>
+                                <mat-option *ngFor="let food of foods" [value]="food.value">
+                                    {{food.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div> -->
+                        <!-- <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                        <mat-label class="form-label">Specifications</mat-label>
+                        <mat-form-field class="demo-chip-list" appearance="outline">
+                            <mat-chip-list #chipList>
+                                <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable"
+                                    (removed)="remove(fruit)">
+                                    {{fruit.name}}
+                                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                </mat-chip>
+                                <input placeholder="" [matChipInputFor]="chipList"
+                                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                    [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" />
+                            </mat-chip-list>
+                        </mat-form-field>
+                    </div> -->
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                            <mat-label class="form-label">Product Description</mat-label>
+                            <!-- <mat-form-field appearance="outline">
+                                <textarea matInput placeholder="Write here something...." rows="6"
+                                    formControlName="desc"></textarea>
+                            </mat-form-field> -->
+                            <div class="form-group has-feedback"
+                                [ngClass]="{ 'has-error': myckeditor.invalid && myckeditor.touched }">
+                                <ckeditor [(ngModel)]="mycontent" [ngModelOptions]="{standalone: true}"
+                                    #myckeditor="ngModel" required [config]="ckeConfig" debounce="500">
+                                </ckeditor>
+                                <div *ngIf="myckeditor.invalid && myckeditor.touched" class="help-block error-msg">
+                                    Description is mandatory field.</div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <mat-action-row>
+                    <button mat-raised-button color="primary" (click)="nextStep()">Next</button>
+                </mat-action-row>
+            </mat-expansion-panel>
+            <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true">
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Product Image
+                        <mat-panel-description> Fill all information below
+                            <!-- <mat-icon>art_track</mat-icon> -->
+                        </mat-panel-description>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="row b-t p-t-20">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="custom-dropzone" ngx-dropzone type="file" [accept]="'image/*'"
+                            (change)="onSelect($event)">
+                            <ngx-dropzone-label class="img-title">
+                                <div>
+                                    <h2>Click or drag files to upload</h2>
+                                </div>
+                            </ngx-dropzone-label>
+                            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files"
+                                [file]="f" [removable]="true" (removed)="onRemove(f)">
+                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                            </ngx-dropzone-image-preview>
+                        </div>
+                    </div>
+                </div>
+                <mat-action-row>
+                    <button mat-raised-button color="warn" (click)="prevStep()">Previous</button>
+                    <button mat-raised-button color="primary" type="submit" (click)="nextStep()">Save</button>
+                </mat-action-row>
+            </mat-expansion-panel>
+            <!-- <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle="true">
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Meta Data
+                        <mat-panel-description> Fill all information below                           
+                        </mat-panel-description>
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+                <div class="row b-t p-t-20">
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                        <mat-label class="form-label">Meta title</mat-label>
+                        <mat-form-field appearance="outline">
+                            <input matInput placeholder="Meta title">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                        <mat-label class="form-label">Meta Keywords</mat-label>
+                        <mat-form-field appearance="outline">
+                            <input matInput placeholder="Meta Keywords">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <mat-label class="form-label">Meta Description</mat-label>
+                        <mat-form-field appearance="outline">
+                            <textarea matInput placeholder="Write here something...." rows="6"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <mat-action-row>
+                    <button mat-raised-button color="warn" (click)="prevStep()">Previous</button>
+                    <button mat-raised-button color="primary" (click)="nextStep()">Save</button>
+                </mat-action-row>
+            </mat-expansion-panel> -->
+        </mat-accordion>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,7 @@
+<app-header *ngIf="sharedService.isShowHeader"></app-header>
+<router-outlet>
+    <ngx-spinner [fullScreen]="true" type="ball-clip-rotate-multiple" size="medium">
+        <p style="font-size: 20px; color: white">Loading Awesomeness...</p>
+    </ngx-spinner>
+</router-outlet>
+<app-footer *ngIf="sharedService.isShowFooter"></app-footer>

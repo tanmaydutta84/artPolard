@@ -1,0 +1,48 @@
+To create migration and model
+-------------------------------------------
+
+npx sequelize-cli model:generate --name User --attributes firstName:string,lastName:string,email:string
+
+
+To run migrations
+-----------------------------------------
+
+npx sequelize-cli db:migrate
+
+
+To undo all migrations
+-----------------------------------------
+
+npx sequelize-cli db:migrate:undo:all
+
+To undo specific migration
+-----------------------------------------
+
+npx sequelize-cli db:migrate:undo:all --to 20190501100413-create-error-logs
+
+
+To create seeder
+-----------------------------------------
+
+npx sequelize-cli seed:generate --name demo-user
+
+
+To seed all data
+-----------------------------------------
+
+npx sequelize-cli db:seed:all
+
+
+To undo all seed data
+-----------------------------------------
+
+npx sequelize-cli db:seed:undo:all
+
+To undo specific seed
+-----------------------------------------
+
+npx sequelize-cli db:seed:undo --seed name-of-seed-file
+
+------ Create new column 
+
+npx sequelize-cli migration:create --name name_of_your_migration

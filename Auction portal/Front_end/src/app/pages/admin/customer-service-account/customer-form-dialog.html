@@ -1,0 +1,106 @@
+<h2 mat-dialog-title class="font-bold mb-2">Add Customer Service User</h2>
+<div mat-dialog-content>
+  <div>
+    <form class="update-form">
+      <div class="row">
+        <div class="col-lg-12 col-md-6 col-sm-12 col-12">
+          <form [formGroup]="customerForm" class="row g-3">
+            <div class="col-12">
+              <mat-label class="form-label">Name</mat-label>
+              <mat-form-field appearance="outline">
+                <input matInput placeholder="Name" formControlName="name" />
+              </mat-form-field>
+            </div>
+            <div class="col-12">
+              <mat-label class="form-label">User Name</mat-label>
+              <mat-form-field appearance="outline">
+                <input
+                  matInput
+                  placeholder="User Name"
+                  formControlName="userName"
+                />
+                <mat-hint class="error-msg">
+                  <div
+                    *ngIf="
+                      (isValidForm ||
+                        customerForm.controls['userName'].touched) &&
+                      customerForm.controls['userName'].errors
+                    "
+                  >
+                    User Name is mandatory field.
+                  </div>
+                </mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="col-12">
+              <mat-label class="form-label">Email</mat-label>
+              <mat-form-field appearance="outline">
+                <input
+                  type="email"
+                  matInput
+                  placeholder="Email"
+                  formControlName="email"
+                  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                />
+                <mat-hint class="error-msg">
+                  <div
+                    *ngIf="
+                      (isValidForm ||
+                        customerForm.controls['email'].touched) &&
+                      customerForm.controls['email']?.errors?.['required']
+                    "
+                  >
+                    Email is mandatory field.
+                  </div>
+                  <div
+                    *ngIf="
+                     ( customerForm.controls['email'].errors &&
+                      customerForm.controls['email']?.errors?.['pattern'])
+                    "
+                  >
+                    Please enter valid email Id.
+                  </div>
+                </mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="col-12">
+              <mat-label class="form-label">Password</mat-label>
+              <mat-form-field appearance="outline">
+                <input
+                  type="password"
+                  matInput
+                  placeholder="Password"
+                  formControlName="password"
+                />
+                <mat-icon matSuffix>visibility</mat-icon>
+                <mat-hint class="error-msg">
+                  <div
+                    *ngIf="
+                      (isValidForm ||
+                        customerForm.controls['password'].touched) &&
+                      customerForm.controls['password'].errors
+                    "
+                  >
+                    Password is mandatory field.
+                  </div>
+                </mat-hint>
+                <!-- <mat-icon matSuffix>visibility_off</mat-icon> -->
+              </mat-form-field>
+            </div>
+          </form>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    cdkFocusInitial
+    (click)="addCustomer()"
+  >
+    Save
+  </button>
+</div>

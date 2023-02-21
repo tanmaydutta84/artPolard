@@ -1,0 +1,20 @@
+<div class="row active-auction-section">
+    <div class="col-md-12 col-sm-12 col-12 px-0">
+        <mat-card>
+            <mat-card-content>
+                <mat-card-title class="mb-4">Active Auction</mat-card-title>
+                <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+                    <mat-button-toggle value="all">All</mat-button-toggle>
+                    <mat-button-toggle value="active">Active Auctions</mat-button-toggle>
+                    <mat-button-toggle value="sold">Sold Items</mat-button-toggle>
+                    <mat-button-toggle value="past">Past Buyer</mat-button-toggle>
+                </mat-button-toggle-group>
+                <div class="tab-content mt-4">
+                    <div>
+                        <app-all-auction></app-all-auction>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
